@@ -1,0 +1,11 @@
+#Database setup
+DB_DATABASE =
+DB_USERNAME =
+DB_PASSWORD =
+DB_PORT =
+DB_HOST =
+
+#JWT authentication
+JWT_SECRET_KEY= 
+JWT_EXPIRATION_TIME= 
+

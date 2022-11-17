@@ -5,10 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import entities from './entities';
-import { ItemsEntity } from './entities/item.entity';
+import { ItemsEntity } from './items/entity/item.entity';
 import { ItemsController } from './items/items.controller';
 import { ItemsModule } from './items/items.module';
 import { ItemsService } from './items/items.service';
+import { UsersController } from './users/users.controller';
+import { UsersService } from './users/users.service';
+import { UsersModule } from './users/users.module';
+import { UsersEntity } from './users/entity/users.entity';
 
 @Module({
   imports: [
@@ -27,10 +31,11 @@ import { ItemsService } from './items/items.service';
       }),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([ItemsEntity]),
+    TypeOrmModule.forFeature([ItemsEntity, UsersEntity]),
     ItemsModule,
+    UsersModule,
   ],
-  controllers: [AppController, ItemsController],
-  providers: [AppService, ItemsService],
+  controllers: [AppController, ItemsController, UsersController],
+  providers: [AppService, ItemsService, UsersService],
 })
 export class AppModule {}

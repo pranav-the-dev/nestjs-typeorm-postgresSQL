@@ -9,7 +9,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('nestDemo')
     .setDescription('This is nestDemo description')
-    .setVersion('1.0')
+    .setVersion('2.0')
     .addTag('nestDemo')
     .build();
 

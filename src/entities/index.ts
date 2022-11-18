@@ -1,5 +1,5 @@
-import { ItemsEntity } from '../items/entity/item.entity';
-import { UsersEntity } from '../users/entity/users.entity';
+import { ItemsEntity } from '../items/entities/item.entity';
+import { UsersEntity } from '../users/entities/users.entity';
 
 const entities = [ItemsEntity, UsersEntity];
 export default entities;

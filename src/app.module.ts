@@ -1,36 +1,24 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import entities from './entities';
-import { ItemsEntity } from './items/entity/item.entity';
+import { typeOrmAsyncConfig } from './database/typeorm-config.service';
+import { ItemsEntity } from './items/entities/item.entity';
 import { ItemsController } from './items/items.controller';
 import { ItemsModule } from './items/items.module';
 import { ItemsService } from './items/items.service';
+import { UsersEntity } from './users/entities/users.entity';
 import { UsersController } from './users/users.controller';
-import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
-import { UsersEntity } from './users/entity/users.entity';
+import { UsersService } from './users/users.service';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRootAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get('DB_HOST'),
-        port: +configService.get<number>('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
-        password: configService.get('DB_PASSWORD'),
-        database: configService.get('DB_DATABASE'),
-        entities: entities,
-        synchronize: true,
-      }),
-      inject: [ConfigService],
-    }),
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     TypeOrmModule.forFeature([ItemsEntity, UsersEntity]),
     ItemsModule,
     UsersModule,
@@ -38,4 +26,6 @@ import { UsersEntity } from './users/entity/users.entity';
   controllers: [AppController, ItemsController, UsersController],
   providers: [AppService, ItemsService, UsersService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+}

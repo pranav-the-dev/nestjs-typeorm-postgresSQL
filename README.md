@@ -24,12 +24,24 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This is [Nest] framework TypeScript starter repository with typeORM with postgresSql.Also there is a functionality on firebase authentication, migration with typeORM, JWT authentication.
 
 ## Installation
 
 ```bash
 $ npm install
+```
+
+## Node version
+
+```bash
+v16.17.0
+```
+
+## NPM version
+
+```bash
+8.15.0
 ```
 
 ## Running the app
@@ -45,6 +57,26 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Running the migrations
+
+```bash
+# Create a migration
+$ npm run migration:create
+
+# generate a migration
+$ npm run migration:generate
+
+# Run a migration
+$ npm run migration:run
+
+# Revert a migration
+$ npm run migration:revert
+
+# Drop a schema
+$ npm run schema:drop
+
+```
+
 ## Test
 
 ```bash
@@ -58,18 +90,31 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Imperative
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- Commit messages should be imperative, like you are giving an order  
+  :white_check_mark: **Add** instead of :x: **Added**  
+  :white_check_mark: **Create** instead of :x: **Creating**
+
+## Commit Categories
+
+Each commit starts with a category,
+
+- 📦 FEATURE:
+- 📈 IMPROVE:
+- 🛠 BUGFIX:
+- 📝 DOC:
+- 🚀 RELEASE:
+- 🤞🏻 TEST:
+- 🔃 REFACTOR:
+- 🎨 DESIGN:
+- CONFLICT:
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-# nestDemoTypeORM
-# nestDemoTypeORM

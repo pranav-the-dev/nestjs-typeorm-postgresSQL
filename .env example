@@ -1,9 +1,9 @@
 #Database setup
+DB_HOST =
 DB_DATABASE =
+DB_PORT =
 DB_USERNAME =
 DB_PASSWORD =
-DB_PORT =
-DB_HOST =
 
 #JWT authentication
 JWT_SECRET_KEY= 

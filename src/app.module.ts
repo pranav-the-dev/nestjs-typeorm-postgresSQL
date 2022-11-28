@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { typeOrmAsyncConfig } from '../typeorm-config';
+import { typeOrmAsyncConfig } from '../typeOrm.config';
 import { ItemsEntity } from './items/entities/item.entity';
 import { ItemsController } from './items/items.controller';
 import { ItemsModule } from './items/items.module';

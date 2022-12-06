@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { DataSource } from 'typeorm';
-import { dataSourceOption } from '../typeOrm.config';
+import { typeOrmAsyncConfig } from 'typeOrm.config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ItemsEntity } from './items/entities/item.entity';
@@ -18,7 +18,7 @@ import { UsersService } from './users/users.service';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    TypeOrmModule.forRootAsync(dataSourceOption),
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     TypeOrmModule.forFeature([ItemsEntity, UsersEntity]),
     ItemsModule,
     UsersModule,

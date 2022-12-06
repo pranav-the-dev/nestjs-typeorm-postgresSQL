@@ -1,19 +1,27 @@
-import { DataSource, DataSourceOptions } from 'typeorm';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModuleAsyncOptions, TypeOrmModuleOptions } from '@nestjs/typeorm';
 
-const configService = new ConfigService();
-export const dataSourceOption: DataSourceOptions = {
-  type: 'postgres',
-  host: configService.get('DB_HOST'),
-  port: +configService.get<number>('DB_PORT'),
-  username: configService.get('DB_USERNAME'),
-  password: configService.get('DB_PASSWORD'),
-  database: configService.get('DB_DATABASE'),
-  // entities: entities,
-  // IMP == entities file which are stored in the local
-  entities: [__dirname + 'src/entities/*{.ts,.js}'],
-  migrations: [__dirname + '/migrations/*{.ts,.js}'],
+export const typeOrmAsyncConfig: TypeOrmModuleAsyncOptions = {
+  imports: [ConfigModule],
+  inject: [ConfigService],
+  useFactory: async (): Promise<TypeOrmModuleOptions> => {
+    return {
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT, 10),
+      username: process.env.DB_USERNAME,
+      database: process.env.DB_NAME,
+      password: process.env.DB_PASSWORD,
+      entities: [__dirname + '/../**/*.entity.{js,ts}'],
+      migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
+      cli: {
+        migrationsDir: __dirname + '/../database/migrations',
+      },
+      extra: {
+        charset: 'utf8mb4_unicode_ci',
+      },
+      synchronize: false,
+      logging: true,
+    };
+  },
 };
-
-const dataSource = new DataSource(dataSourceOption);
-export default dataSource;
